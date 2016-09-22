@@ -1,7 +1,7 @@
 if (navigator.serviceWorker) {
      navigator.serviceWorker.register('./service-worker.js', {scope: './'})
         .then(function (registration) {
-            console.log(registration);
+            console.log('Registration array of events : '+registration);
         })
         .catch(function (e) {
             console.error(e);
