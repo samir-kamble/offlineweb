@@ -1,11 +1,11 @@
-importScripts('js/cache-polyfill.js');
+importScripts('./js/cache-polyfill.js');
 
 var CACHE_VERSION = 'app-v1';
 var CACHE_FILES = [
-    '/',
-    'images/background.jpeg',
-    'js/app.js',
-    'css/styles.css',
+    './',
+    './images/background.jpeg',
+    './js/app.js',
+    './css/styles.css',
     'https://fonts.googleapis.com/css?family=Roboto:100'
 ];
 
