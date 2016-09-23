@@ -17,17 +17,17 @@ self.addEventListener('install', function (event) {
         caches.open(CACHE_VERSION)
             .then(function (cache) {
                 console.log('Opened cache');
-				// Once the contents are loaded, convert the raw text to a JavaScript object
-				return fetch('userData.json').then(function(response) {
-				  // Once the contents are loaded, convert the raw text to a JavaScript object
-				  return response.json();
-				}).then(function(files) {
-				  // Use cache.addAll just as you would a hardcoded array of items
-				  console.log('[install] Adding files from JSON file: ', files);
-				  var gname = files.goals[0].gname;
-				  console.log('goal name ' +gname);
-				  return cache.addAll(CACHE_FILES);
-				});
+			// Once the contents are loaded, convert the raw text to a JavaScript object
+			return fetch('userData.json').then(function(response) {
+			  // Once the contents are loaded, convert the raw text to a JavaScript object
+			  return response.json();
+			}).then(function(files) {
+			  // Use cache.addAll just as you would a hardcoded array of items
+			  console.log('[install] Adding files from JSON file: ', files);
+			  var gname = files.goals[0].gname;
+			  document.getElementById("gname").innerHTML=gname;
+			  return cache.addAll(CACHE_FILES);
+			});
             })
     );
 });
