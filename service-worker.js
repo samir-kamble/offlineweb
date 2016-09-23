@@ -10,7 +10,7 @@ var CACHE_FILES = [
     'https://fonts.googleapis.com/css?family=Roboto:100'
 ];
 
-
+//Service Worker Initialization
 self.addEventListener('install', function (event) {
 	console.log('[install] Installing service worker and registering it!');
     event.waitUntil(
