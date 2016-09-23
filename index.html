@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<div>This is demo page with background image cached to serve offline after first hit.</div>
+<div class="gname1"></div>
 </body>
 <!-- jQuery 2.2.3 -->
 <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
@@ -23,6 +23,7 @@ $(document).ready(function() {
         success: function(data) {
 	    	var json = $.parseJSON(data); //data downloaded so we call parseJSON function and pass downloaded data
 	       	console.log('Goal1 Name is ' + json.goals[0].gname);
+	       	$(".gname1").html(json.goals[0].gname);
         },
 	complete: function(){
 	    
