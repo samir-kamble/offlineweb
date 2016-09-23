@@ -9,5 +9,23 @@
 <body>
 <div>This is demo page with background image cached to serve offline after first hit.</div>
 </body>
+<!-- jQuery 2.2.3 -->
+<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Application JS -->
 <script src="js/app.js"></script>
+<script>
+$(document).ready(function() {
+    //$('#goal-sim').show();
+	$.ajax({//start ajax request and Parsing of JSON data
+		cache: false,
+        url: "userData.json",//Local JSON file
+        dataType: "text",//force to handle it as text
+        success: function(data) {
+            var json = $.parseJSON(data); //data downloaded so we call parseJSON function and pass downloaded data
+        },
+		complete: function(){
+		    console.log('Goal1 Name is'+json.goals[0].gname);
+		}
+    });//End ajax request
+});
 </html>
