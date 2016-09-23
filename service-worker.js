@@ -12,19 +12,19 @@ var CACHE_FILES = [
 
 
 self.addEventListener('install', function (event) {
-	console.log('[install] Kicking off service worker registration!');
+	console.log('[install] Installing service worker and registering it!');
     event.waitUntil(
         caches.open(CACHE_VERSION)
             .then(function (cache) {
-                console.log('Opened cache');
+                console.log('[Install] Opened cache');
 			// Once the contents are loaded, convert the raw text to a JavaScript object
 			return fetch('userData.json').then(function(response) {
 			  // Once the contents are loaded, convert the raw text to a JavaScript object
 			  return response.json();
-			}).then(function(files) {
+			}).then(function(file) {
 			  // Use cache.addAll just as you would a hardcoded array of items
-			  console.log('[install] Adding files from JSON file: ', files);
-			  var gname = files.goals[0].gname;
+			  console.log('[install] Reading from JSON file: ', file);
+			  var gname = file.goals[0].gname;
 			  console.log(gname);
 			  return cache.addAll(CACHE_FILES);
 			});
@@ -32,16 +32,22 @@ self.addEventListener('install', function (event) {
     );
 });
 
-self.addEventListener('activate', function (event) {
-    event.waitUntil(
-        caches.keys().then(function(keys){
-            return Promise.all(keys.map(function(key, i){
-                if(key !== CACHE_VERSION){
-                    return caches.delete(keys[i]);
-                }
-            }))
-        })
-    )
+self.addEventListener("activate", function (event) {
+	console.log('[activate] Activating Service worker for operations!');
+	event.waitUntil(
+	caches.keys()
+	  .then(function (cacheNames) {
+		console.log('[activate] Checking existing cache names for their deletion');
+		return Promise.all(
+		  cacheNames.map(function (cacheName) {
+			console.log('[activate] Check if any stale cache and remove them');
+			if (currentCacheNames.indexOf(cacheName) === -1) {
+			  return caches.delete(cacheName);
+			}
+		  })
+		);
+	  })
+	);
 });
 
 self.addEventListener('fetch', function(event) {
