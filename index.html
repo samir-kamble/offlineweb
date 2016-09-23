@@ -15,9 +15,9 @@
 <script src="js/app.js"></script>
 <script>
 $(document).ready(function() {
-    alert('hello');
+    //alert('hello');
 	$.ajax({//start ajax request and Parsing of JSON data
-		cache: false,
+	cache: false,
         url: "userData.json",//Local JSON file
         dataType: "text",//force to handle it as text
         success: function(data) {
