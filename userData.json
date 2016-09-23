@@ -1,0 +1,33 @@
+{
+    "name": "Vishal Ahuja",
+    "designation": "Relationship Manager",
+    "description": "Select2 is a jQuery based replacement for select boxes. It supports searching, remote data sets, and infinite scrolling of results.",
+    "goals": [
+        {
+            "gname": "Buy a Baleno",
+            "amount": "1000000",
+            "tenure": "09/20/2026",
+            "loan": "true",
+			"liqassets": "40",
+			"tagassets": [{"value":"1","label":"Mutual Funds"}, {"value":"2","label":"Cash at Bank"},{"value":"3","label":"Insurance"}, {"value":"4","label":"Fixed Deposits"}]
+			
+        },
+        {
+            "gname": "Buy a Home",
+            "amount": "200000",
+			"tenure": "05/15/2020",
+            "loan": "false",
+			"liqassets": "40",
+			"tagassets": [{"value":"1","label":"Mutual Funds"}, {"value":"2","label":"Cash at Bank"},{"value":"3","label":"Insurance"}, {"value":"4","label":"Fixed Deposits"}]
+        },
+        {
+            "gname": "Education - Ravi",
+            "amount": "500000",
+			"tenure": "08/23/2021",
+            "loan": "true",
+			"liqassets": "20",
+			"tagassets": [{"value":"1","label":"Mutual Funds"}, {"value":"2","label":"Cash at Bank"},{"value":"3","label":"Insurance"}, {"value":"4","label":"Fixed Deposits"}]
+        }
+    ]
+    
+}
