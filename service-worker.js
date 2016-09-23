@@ -32,6 +32,8 @@ self.addEventListener('install', function (event) {
     );
 });
 
+
+//Service Worker Activation
 self.addEventListener("activate", function (event) {
 	console.log('[activate] Activating Service worker for operations!');
 	event.waitUntil(
@@ -45,21 +47,18 @@ self.addEventListener("activate", function (event) {
    );
 });
 
+
+//Service Worker Fetching data from Cache
 self.addEventListener('fetch', function(event) {
   event.respondWith(
     caches.match(event.request)
       .then(function(response) {
         // Cache hit - return the response from the cached version
         if (response) {
-          console.log(
-            '[fetch] Returning from Service Worker cache: ',
-            event.request.url
-          );
+          console.log('[fetch] Returning from Service Worker cache: ', event.request.url);
           return response;
         }
-
-        // Not in cache - return the result from the live server
-        // `fetch` is essentially a "fallback"
+        // Not in cache - return the result from the live server `fetch` is essentially a "fallback"
         console.log('[fetch] Returning from server: ', event.request.url);
         return fetch(event.request);
       }
