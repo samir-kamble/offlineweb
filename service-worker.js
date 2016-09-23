@@ -4,7 +4,9 @@ var CACHE_VERSION = 'app-v1';
 var CACHE_FILES = [
     './',
     './images/background.jpeg',
+    './userData.json',
     './js/app.js',
+    './plugins/jQuery/jquery-2.2.3.min.js',
     './css/styles.css',
     'https://fonts.googleapis.com/css?family=Roboto:100'
 ];
