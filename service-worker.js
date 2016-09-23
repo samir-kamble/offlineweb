@@ -12,11 +12,21 @@ var CACHE_FILES = [
 
 
 self.addEventListener('install', function (event) {
+	console.log('[install] Kicking off service worker registration!');
     event.waitUntil(
         caches.open(CACHE_VERSION)
             .then(function (cache) {
                 console.log('Opened cache');
-                return cache.addAll(CACHE_FILES);
+				// Once the contents are loaded, convert the raw text to a JavaScript object
+				return fetch('userData.json').then(function(response) {
+				  // Once the contents are loaded, convert the raw text to a JavaScript object
+				  return response.json();
+				}).then(function(files) {
+				  // Use cache.addAll just as you would a hardcoded array of items
+				  console.log('[install] Adding files from JSON file: ', files);
+				  
+				  return cache.addAll(CACHE_FILES);
+				});
             })
     );
 });
