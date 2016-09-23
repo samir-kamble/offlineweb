@@ -15,12 +15,13 @@
 <script src="js/app.js"></script>
 <script>
 $(document).ready(function() {
-    //alert('hello');
+    
 	$.ajax({//start ajax request and Parsing of JSON data
 	cache: false,
         url: "userData.json",//Local JSON file
         dataType: "text",//force to handle it as text
         success: function(data) {
+        	alert('hello');
 	    	var json = $.parseJSON(data); //data downloaded so we call parseJSON function and pass downloaded data
 	       	console.log('Goal1 Name is ' + json.goals[0].gname);
 	       	$(".gname1").html(json.goals[0].gname);
