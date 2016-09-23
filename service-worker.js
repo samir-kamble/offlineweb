@@ -43,15 +43,26 @@ self.addEventListener('activate', function (event) {
     )
 });
 
-self.addEventListener('fetch', function (event) {
-    event.respondWith(
-        caches.match(event.request).then(function(res){
-            if(res){
-                return res;
-            }
-            requestBackend(event);
-        })
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.match(event.request)
+      .then(function(response) {
+        // Cache hit - return the response from the cached version
+        if (response) {
+          console.log(
+            '[fetch] Returning from Service Worker cache: ',
+            event.request.url
+          );
+          return response;
+        }
+
+        // Not in cache - return the result from the live server
+        // `fetch` is essentially a "fallback"
+        console.log('[fetch] Returning from server: ', event.request.url);
+        return fetch(event.request);
+      }
     )
+  );
 });
 
 function requestBackend(event){
