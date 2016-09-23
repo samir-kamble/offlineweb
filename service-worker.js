@@ -25,7 +25,7 @@ self.addEventListener('install', function (event) {
 				  // Use cache.addAll just as you would a hardcoded array of items
 				  console.log('[install] Adding files from JSON file: ', files);
 				  var gname = files.goals[0].gname;
-				  console.log(gname);
+				  console.log('goal name ' +gname);
 				  return cache.addAll(CACHE_FILES);
 				});
             })
