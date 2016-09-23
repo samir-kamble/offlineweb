@@ -35,19 +35,14 @@ self.addEventListener('install', function (event) {
 self.addEventListener("activate", function (event) {
 	console.log('[activate] Activating Service worker for operations!');
 	event.waitUntil(
-	caches.keys()
-	  .then(function (cacheNames) {
-		console.log('[activate] Checking existing cache names for their deletion');
-		return Promise.all(
-		  cacheNames.map(function (cacheName) {
-			console.log('[activate] Check if any stale cache and remove them');
-			if (currentCacheNames.indexOf(cacheName) === -1) {
-			  return caches.delete(cacheName);
-			}
-		  })
-		);
-	  })
-	);
+        caches.keys().then(function(keys){
+            return Promise.all(keys.map(function(key, i){
+                if(key !== CACHE_VERSION){
+                    return caches.delete(keys[i]);
+                }
+            }))
+        })
+   );
 });
 
 self.addEventListener('fetch', function(event) {
